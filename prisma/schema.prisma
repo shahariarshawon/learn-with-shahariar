@@ -1,0 +1,180 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum Role {
+  ADMIN
+  INSTRUCTOR
+  STUDENT
+}
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  email    String @unique
+  password String
+  role     Role   @default(STUDENT)
+
+  // Relations
+  courses         Course[]         @relation("InstructorCourses")
+  enrollments     Enrollment[]
+  progress        Progress[]
+  comments        Comment[]
+  notifications   Notification[]
+  taskSubmissions TaskSubmission[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Course {
+  id          String  @id @default(uuid())
+  title       String
+  description String
+  thumbnail   String? // image URL (Cloudinary etc.)
+  isPublished Boolean @default(false)
+
+  // Instructor relation
+  instructor   User   @relation("InstructorCourses", fields: [instructorId], references: [id])
+  instructorId String
+
+  // Relations
+  lessons     Lesson[]
+  enrollments Enrollment[]
+  comments    Comment[]
+  tasks       Task[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Lesson {
+  id          String  @id @default(uuid())
+  title       String
+  description String?
+  videoUrl    String? // YouTube / Cloudinary / UploadThing
+  position    Int // lesson order inside course
+
+  // Course relation
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId String
+
+  // Progress tracking
+  progress Progress[]
+  comments Comment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Enrollment {
+  id String @id @default(uuid())
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId String
+
+  enrolledAt DateTime @default(now())
+
+  @@unique([userId, courseId]) // Prevent duplicate enrollments
+}
+
+model Progress {
+  id String @id @default(uuid())
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  lessonId String
+
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, lessonId]) // Prevent duplicate progress rows
+}
+
+model Comment {
+  id      String @id @default(uuid())
+  content String
+
+  // Author
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  // Optional course relation
+  course   Course? @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId String?
+
+  // Optional lesson relation
+  lesson   Lesson? @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  lessonId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  id      String           @id @default(uuid())
+  message String
+  type    NotificationType
+  isRead  Boolean          @default(false)
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  createdAt DateTime @default(now())
+}
+
+enum NotificationType {
+  COURSE_ENROLLMENT
+  NEW_COMMENT
+  COURSE_PUBLISHED
+}
+
+model Task {
+  id          String           @id @default(uuid())
+  title       String
+  description String
+  startTime   DateTime
+  dueTime     DateTime
+  courseId    String
+  course      Course           @relation(fields: [courseId], references: [id])
+  submissions TaskSubmission[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model TaskSubmission {
+  id String @id @default(uuid())
+
+  taskId String
+  task   Task   @relation(fields: [taskId], references: [id])
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  githubRepo String
+  liveLink   String
+
+  submittedAt DateTime @default(now())
+  isLate      Boolean  @default(false)
+
+  // grading system
+  grade    Int? // out of 60
+  feedback String?
+  reviewed Boolean @default(false)
+
+  @@unique([taskId, userId])
+}
