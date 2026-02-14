@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import navLogo from "../assets/navlogo.png"; // fixed typo: "assests" → "assets"
+import navLogo from "../assets/navlogo.png";
+import notificationIcon from "@/app/public/notification.svg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,9 +23,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Left - Logo */}
-          <div className="shrink-0">
+          <div className="shrink-0 w-65">
             <Link href="/">
-              <Image src={navLogo} alt="Logo" width={250} height={100} />
+              <Image src={navLogo} alt="Logo" />
             </Link>
           </div>
 
@@ -45,6 +46,22 @@ export default function Navbar() {
 
           {/* Right - Buttons */}
           <div className="hidden md:flex space-x-4">
+            <Link
+              href="/notification"
+              className="relative group flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 bg-[#7F265B] "
+            >
+              <Image
+                src={notificationIcon}
+                alt="Notification"
+                width={22}
+                height={22}
+                className="transition-transform duration-300 group-hover:animate-shake "
+              />
+
+              {/* Optional Notification Badge */}
+              <span className="absolute top-[-3px] right-[-3px] w-2.5 h-2.5 bg-red-500 rounded-full"></span>
+            </Link>
+
             {/* Login Button */}
             <Link href="/signin">
               <Button
@@ -94,7 +111,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-gray-700 hover:text-violet-500 font-medium transition-colors"
+                  className="text-gray-700 hover:text-[#7F265B] font-medium transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}

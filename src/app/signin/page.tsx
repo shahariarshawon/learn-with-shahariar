@@ -12,11 +12,11 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-[#ffe6c8] px-4">
       {/* Main Card */}
-      <div className="w-full max-w-5xl bg-white p-4 shadow-2xl rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2 transition-all duration-500">
+      <div className="w-full max-w-6xl bg-white p-4 shadow-2xl rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-[3fr_2fr] transition-all duration-500">
         {/* Left Side - Image */}
         <div className="relative hidden md:block">
           <Image
-            src={loginImage} // put image inside public folder
+            src={loginImage}
             alt="Login Illustration"
             fill
             className="object-cover"
@@ -90,6 +90,12 @@ export default function LoginPage() {
           <button className="w-full bg-[#7F265B] text-white py-3 rounded-lg font-semibold hover:bg-[#7F265B]/80 transition-all duration-300 hover:shadow-lg active:scale-95">
             Login
           </button>
+          <p className="text-center text-sm text-gray-600 mt-4">
+            Don't have an account?{" "}
+            <Link href="/enroll" className="text-[#7F265B] hover:underline">
+              Sign up
+            </Link>
+          </p>
         </div>
       </div>
     </main>
