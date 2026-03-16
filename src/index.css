@@ -1,2 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default;
+}
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  /* color styles */
+  --color-primary: #4dc591;
+  --color-secondary: #9ba1ff;
+  --color-tertiary: #ff7648;
+
+  /* text colors */
+  --color-text1: #191b32;
+  --color-text2: #9295a3;
+}
+
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* navbar navlinks styles */
+.nav-item {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: #49bbbd;
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
