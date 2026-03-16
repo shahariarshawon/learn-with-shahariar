@@ -12,7 +12,7 @@ const Footer = () => {
         {/* LOGO + DESCRIPTION */}
         <div>
           <img src={logo} alt="Learn With Shahariar" className="w-40 mb-4"/>
-          <p className="text-sm leading-relaxed">
+          <p className="text-sm text-justify leading-relaxed">
             Learn modern web development with practical projects and real
             industry knowledge. Start your journey to becoming a professional
             developer today.
@@ -47,7 +47,7 @@ const Footer = () => {
             Get Course Updates
           </h3>
 
-          <p className="text-sm mb-4">
+          <p className="text-sm  mb-4">
             Subscribe to receive new course notifications and learning tips.
           </p>
 
@@ -69,10 +69,10 @@ const Footer = () => {
           <FaDiscord size={24}></FaDiscord>
       
       </a>
-      <a>
+      <a className="hover:cursor-pointer">
         <FaYoutube size={24}></FaYoutube>
       </a>
-      <a >
+      <a className="hover:cursor-pointer">
         <FaFacebook size={24}></FaFacebook>
       </a>
     </div>

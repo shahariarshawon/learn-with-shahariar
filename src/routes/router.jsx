@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../layouts/RootLayout";
 import HomePage from "../pages/HomePage";
+import LoginPage from "../pages/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path:"/*",
     element:<h2>Tmi vul er dike acho baba</h2>
+  },
+  {
+    path:"/login",
+    Component: LoginPage,
   }
 ]);
 
