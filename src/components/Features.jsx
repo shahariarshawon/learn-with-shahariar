@@ -55,7 +55,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-16">
+    <section data-aos="fade-left" className="max-w-7xl mx-auto px-4 py-16">
       
       {/* HEADER */}
       <div className="text-center mb-12">

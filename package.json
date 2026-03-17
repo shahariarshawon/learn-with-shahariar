@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailgrids/icons": "^2.0.0",
     "@tailwindcss/vite": "^4.2.1",
+    "aos": "^2.3.4",
     "class-variance-authority": "^0.7.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

@@ -36,7 +36,7 @@ const courses = [
 
 const OurCourses = () => {
   return (
-    <section className="max-w-7xl mx-auto px-4 py-16">
+    <section data-aos="fade-right" className="max-w-7xl mx-auto px-4 py-16">
       
       {/* HEADING */}
       <div className="text-center mb-12">

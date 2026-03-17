@@ -3,7 +3,7 @@ import { FiAward } from "react-icons/fi";
 
 const Success = () => {
   return (
-    <section className="max-w-7xl mx-auto px-4 py-20 text-center">
+    <section data-aos="fade-right" className="max-w-7xl mx-auto px-4 py-20 text-center">
       
       {/* HEADER */}
       <h3 className="text-3xl md:text-4xl font-bold mb-4">

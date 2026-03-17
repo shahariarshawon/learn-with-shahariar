@@ -3,7 +3,7 @@ import { FiTarget, FiTrendingUp } from "react-icons/fi";
 
 const Mission = () => {
   return (
-    <section className="bg-base-200 py-20">
+    <section data-aos="fade-left" className="bg-base-200 py-20">
       <div className="max-w-7xl mx-auto px-4">
         
         {/* HEADER */}
