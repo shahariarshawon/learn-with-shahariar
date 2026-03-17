@@ -15,6 +15,7 @@ const RootLayout = () => {
       <footer className="bg-base-200">
         <Footer></Footer>
       </footer>
+      {/* toast container */}
     </div>
   );
 };
