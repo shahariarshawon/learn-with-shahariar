@@ -14,7 +14,7 @@ const Banner = () => {
       {/* dark overlay */}
       <div className="absolute inset-0 bg-black/65"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6 py-32 text-white w-full">
+      <div className="relative max-w-7xl mx-auto px-4 py-32 text-white w-full">
         <div className="max-w-3xl">
 
           {/* Heading */}

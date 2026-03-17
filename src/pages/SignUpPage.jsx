@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 const SignUpPage = () => {
   // login function
   const handleLogin = () => {
-    toast.success("Login Successfull");
+    toast.success("SignUp Successfull");
     console.log("Clicked");
   };
   const [showPassword, setShowPassword] = useState(false);
