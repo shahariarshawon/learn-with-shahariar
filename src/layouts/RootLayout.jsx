@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 const RootLayout = () => {
   return (
-    <div>
+    <div className="scroll-smooth">
       <header>
         <Header></Header>
       </header>
