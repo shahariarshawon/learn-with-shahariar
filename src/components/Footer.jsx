@@ -4,7 +4,7 @@ import { FaDiscord, FaFacebook, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="  mt-20">
+    <footer className="">
       
       {/* TOP FOOTER */}
       <div className="max-w-7xl mx-auto px-6 py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">

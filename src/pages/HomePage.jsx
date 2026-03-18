@@ -4,6 +4,7 @@ import OurCourses from "../components/OurCourses";
 import Features from "../components/Features";
 import Success from "../components/Success";
 import Mission from "../components/Mission";
+import CallToAction from "../components/CallToAction";
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       <Features></Features>
       <Success></Success>
       <Mission></Mission>
+      <CallToAction></CallToAction>
     </div>
   );
 };
