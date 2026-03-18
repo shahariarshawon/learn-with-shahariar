@@ -5,24 +5,73 @@ import logo from "../assets/navlogo.png";
 const Header = () => {
 
   const navLinks = (
-    <>
-      <li>
-        <NavLink to="/" className="nav-item">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/courses" className="nav-item">Courses</NavLink>
-      </li>
-      <li>
-        <NavLink to="/success" className="nav-item">Success</NavLink>
-      </li>
-      <li>
-        <NavLink to="/blogs" className="nav-item">Blogs</NavLink>
-      </li>
-      <li>
-        <NavLink to="/about" className="nav-item">About Us</NavLink>
-      </li>
-    </>
-  );
+  <>
+    <li>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          `nav-item ${
+            isActive ? "text-[#49bbbd] font-semibold border-b-2 border-[#49bbbd]" : ""
+          }`
+        }
+      >
+        Home
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink
+        to="/courses"
+        className={({ isActive }) =>
+          `nav-item ${
+            isActive ? "text-[#49bbbd] font-semibold border-b-2 border-[#49bbbd]" : ""
+          }`
+        }
+      >
+        Courses
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink
+        to="/success"
+        className={({ isActive }) =>
+          `nav-item ${
+            isActive ? "text-[#49bbbd] font-semibold border-b-2 border-[#49bbbd]" : ""
+          }`
+        }
+      >
+        Success
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink
+        to="/blogs"
+        className={({ isActive }) =>
+          `nav-item ${
+            isActive ? "text-[#49bbbd] font-semibold border-b-2 border-[#49bbbd] " : ""
+          }`
+        }
+      >
+        Blogs
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink
+        to="/about"
+        className={({ isActive }) =>
+          `nav-item ${
+            isActive ? "text-[#49bbbd] font-semibold border-b-2 border-[#49bbbd]" : ""
+          }`
+        }
+      >
+        About Us
+      </NavLink>
+    </li>
+  </>
+);
 
   return (
     <div className="border-b bg-white sticky top-0 z-50">

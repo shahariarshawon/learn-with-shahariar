@@ -4,6 +4,8 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 import CoursesPage from "../pages/CoursesPage";
+import SuccessPage from "../pages/SuccessPage";
+import BlogsPage from "../pages/BlogsPage";
 
 const router = createBrowserRouter([
   {
@@ -18,13 +20,22 @@ const router = createBrowserRouter([
         path: "/courses",
         Component: CoursesPage
       },
+      {
+        path:"/success",
+        Component:SuccessPage,
+      },
+      {
+        path:"/blogs",
+        Component:BlogsPage,
+      },
+       {
+    path: "/*",
+    element: <p>Tumi vuler dike acho</p>
+  },
     ],
   },
 
-  {
-    path: "/*",
-    element: <h2>Tmi vul er dike acho baba</h2>,
-  },
+ 
   {
     path: "/login",
     Component: LoginPage,
