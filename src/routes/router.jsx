@@ -3,34 +3,36 @@ import RootLayout from "../layouts/RootLayout";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
+import CoursesPage from "../pages/CoursesPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
-    children:[
-        {
-            index: true,
-            Component: HomePage
-        }
-    ]
+    children: [
+      {
+        index: true,
+        Component: HomePage,
+      },
+      {
+        path: "/courses",
+        Component: CoursesPage
+      },
+    ],
+  },
+
+  {
+    path: "/*",
+    element: <h2>Tmi vul er dike acho baba</h2>,
   },
   {
-    path: "/courses",
-    element: <h2>Courses Page</h2>,
-  },
-  {
-    path:"/*",
-    element:<h2>Tmi vul er dike acho baba</h2>
-  },
-  {
-    path:"/login",
+    path: "/login",
     Component: LoginPage,
   },
   {
-    path:"/signup",
+    path: "/signup",
     Component: SignUpPage,
-  }
+  },
 ]);
 
 export default router;
