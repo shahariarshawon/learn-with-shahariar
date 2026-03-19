@@ -4,8 +4,11 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -20,6 +23,7 @@ const LoginPage = () => {
       .then((result) => {
         console.log(result);
         toast.success("Login Successfull");
+        navigate("/");
       })
       .catch((err) => {
         console.error(err);
