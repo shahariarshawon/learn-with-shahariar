@@ -2,13 +2,30 @@ import React, { useState } from "react";
 import loginImage from "../assets/login.jfif";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
 
 const LoginPage = () => {
-// login function
-const handleLogin=()=>{
-  toast.success("Login Successfull");
-  console.log("Clicked");
-}
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { signIn } = useAuth();
+  // login function
+  const onSubmit = (data) => {
+    console.log(data);
+    signIn(data.email, data.password)
+      .then((result) => {
+        console.log(result);
+        toast.success("Login Successfull");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Login Failed");
+      });
+  };
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -30,13 +47,17 @@ const handleLogin=()=>{
 
           {/* TOGGLE */}
           <div className="relative flex bg-[#75e0e1] rounded-full p-1 mb-8">
-        
-
-            <a href="/login" className="flex-1 text-center z-10 text-white bg-[#3ba3a4] rounded-4xl py-2 font-medium">
+            <a
+              href="/login"
+              className="flex-1 text-center z-10 text-white bg-[#3ba3a4] rounded-4xl py-2 font-medium"
+            >
               Login
             </a>
 
-            <a href="/signup" className="flex-1 text-center z-10 text-white py-2 font-medium">
+            <a
+              href="/signup"
+              className="flex-1 text-center z-10 text-white py-2 font-medium"
+            >
               Sign Up
             </a>
           </div>
@@ -45,57 +66,78 @@ const handleLogin=()=>{
             An learning platform for the upcoming developers
           </p>
 
-          {/* email address */}
-          <div className="mb-5">
-            <h3 className="mb-2 font-medium">Email Address</h3>
-            
-            <input
-             type="email"
-             name="email"
-             id="email"
-              placeholder="Enter your email address"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#49bbbd]"
-            />
-          </div>
+          {/* login form */}
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {/* email address */}
+            <div className="mb-5">
+              <h3 className="mb-2 font-medium">Email Address</h3>
 
-          {/* PASSWORD */}
-          <div className="mb-5 relative">
-            <h3 className="mb-2 font-medium">Password</h3>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                {...register("email", { required: true })}
+                placeholder="Enter your email address"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-[#49bbbd]"
+              />
+            </div>
 
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              id="password"
-              placeholder="Enter your password"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 focus:outline-none focus:border-[#49bbbd]"
-            />
+            {/* PASSWORD */}
+            <div className="mb-5 relative">
+              <h3 className="mb-2 font-medium">Password</h3>
 
-            {/* SHOW BUTTON */}
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-12 text-sm text-gray-500 hover:text-[#49bbbd] hover:cursor-pointer"
-            >
-              {showPassword ? <FiEyeOff></FiEyeOff> : <FiEye></FiEye>}
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                required
+                {...register("password", { required: true, minLength: 6 })}
+                placeholder="Enter your password"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 focus:outline-none focus:border-[#49bbbd]"
+              />
+
+              {/* SHOW BUTTON */}
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-12 text-sm text-gray-500 hover:text-[#49bbbd] hover:cursor-pointer"
+              >
+                {showPassword ? <FiEyeOff></FiEyeOff> : <FiEye></FiEye>}
+              </button>
+
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-500 text-sm">
+                  Password must be 6 characters long
+                </p>
+              )}
+            </div>
+
+            {/* REMEMBER */}
+            <div className="flex justify-between items-center mb-6 text-sm">
+              <p className="flex items-center gap-2">
+                <input type="checkbox" />
+                Remember Me
+              </p>
+
+              <p className="text-[#49bbbd] cursor-pointer hover:underline">
+                Forgot Password?
+              </p>
+            </div>
+
+            {/* BUTTON */}
+            <button className="w-full py-3 rounded-lg bg-[#49bbbd] text-white font-semibold hover:opacity-90 transition hover:cursor-pointer">
+              Login
             </button>
-          </div>
+          </form>
 
-          {/* REMEMBER */}
-          <div className="flex justify-between items-center mb-6 text-sm">
-            <p className="flex items-center gap-2">
-              <input type="checkbox" />
-              Remember Me
-            </p>
-
-            <p className="text-[#49bbbd] cursor-pointer hover:underline">
-              Forgot Password?
-            </p>
-          </div>
-
-          {/* BUTTON */}
-          <button onClick={handleLogin} className="w-full py-3 rounded-lg bg-[#49bbbd] text-white font-semibold hover:opacity-90 transition hover:cursor-pointer">Login</button>
           {/* not having an account option */}
-          <p className="text-center text-gray-500 pt-2">Don't have an account? <a className="text-primary" href="/signup">Sign Up</a></p>
+          <p className="text-center text-gray-500 pt-2">
+            Don't have an account?{" "}
+            <a className="text-primary" href="/signup">
+              Sign Up
+            </a>
+          </p>
         </div>
       </div>
     </div>

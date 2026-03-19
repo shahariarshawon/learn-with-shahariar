@@ -6,10 +6,10 @@ import Footer from "../components/Footer";
 const RootLayout = () => {
   return (
     <div className="scroll-smooth">
-      <header>
+      <header className="fixed top-0 w-full z-50">
         <Header></Header>
       </header>
-      <main className="min-h-screen">
+      <main className="min-h-screen pt-12">
         <Outlet></Outlet>
       </main>
       <footer className="bg-base-200">

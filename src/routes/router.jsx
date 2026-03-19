@@ -7,6 +7,7 @@ import CoursesPage from "../pages/CoursesPage";
 import SuccessPage from "../pages/SuccessPage";
 import BlogsPage from "../pages/BlogsPage";
 import AboutUs from "../pages/AboutUs";
+import AuthLayout from "../layouts/AuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -39,15 +40,22 @@ const router = createBrowserRouter([
       },
     ],
   },
-
   {
-    path: "/login",
+    path:"/",
+    Component:AuthLayout,
+    children:[
+      {
+    path: "login",
     Component: LoginPage,
   },
   {
-    path: "/signup",
+    path: "signup",
     Component: SignUpPage,
   },
+    ]
+  }
+
+  
 ]);
 
 export default router;
