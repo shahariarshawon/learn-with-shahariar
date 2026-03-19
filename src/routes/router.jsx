@@ -8,6 +8,9 @@ import SuccessPage from "../pages/SuccessPage";
 import BlogsPage from "../pages/BlogsPage";
 import AboutUs from "../pages/AboutUs";
 import AuthLayout from "../layouts/AuthLayout";
+import AdminDashboard from "../pages/dashboard/AdminDashboard";
+import StudentDashboard from "../pages/dashboard/StudentDashboard";
+import TeacherDashboard from "../pages/dashboard/TeacherDashboard";
 
 const router = createBrowserRouter([
   {
@@ -35,27 +38,37 @@ const router = createBrowserRouter([
         Component: AboutUs,
       },
       {
+        path: "/dashboard/admin",
+        Component: AdminDashboard,
+      },
+      {
+        path: "/dashboard/student",
+        Component: StudentDashboard,
+      },
+      {
+        path: "/dashboard/teacher",
+        Component: TeacherDashboard,
+      },
+      {
         path: "/*",
         element: <p>Tumi vuler dike acho</p>,
       },
     ],
   },
   {
-    path:"/",
-    Component:AuthLayout,
-    children:[
+    path: "/",
+    Component: AuthLayout,
+    children: [
       {
-    path: "login",
-    Component: LoginPage,
+        path: "login",
+        Component: LoginPage,
+      },
+      {
+        path: "signup",
+        Component: SignUpPage,
+      },
+    ],
   },
-  {
-    path: "signup",
-    Component: SignUpPage,
-  },
-    ]
-  }
-
-  
 ]);
 
 export default router;

@@ -35,7 +35,7 @@ const Header = () => {
 
   // NAV STYLE
   const navItemClass = ({ isActive }) =>
-    `relative px-2 py-1 transition duration-300 
+    `relative py-1 transition duration-300 
      ${
        isActive
          ? "text-[#49bbbd] font-semibold"
@@ -80,7 +80,7 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto ">
         <div className="navbar py-3">
           {/* LEFT */}
           <div className="navbar-start gap-2">
@@ -163,6 +163,13 @@ const Header = () => {
                       className="block px-3 py-2 rounded-lg hover:bg-gray-100 transition"
                     >
                       Profile
+                    </Link>
+                    <Link
+                      to="/dashboard/admin"
+                      onClick={() => setOpen(false)}
+                      className="block px-3 py-2 rounded-lg hover:bg-gray-100 transition"
+                    >
+                      Dashboard
                     </Link>
 
                     <button

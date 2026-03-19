@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -51,19 +52,19 @@ const LoginPage = () => {
 
           {/* TOGGLE */}
           <div className="relative flex bg-[#75e0e1] rounded-full p-1 mb-8">
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="flex-1 text-center z-10 text-white bg-[#3ba3a4] rounded-4xl py-2 font-medium"
             >
               Login
-            </a>
+            </Link>
 
-            <a
-              href="/signup"
+            <Link
+              to="/signup"
               className="flex-1 text-center z-10 text-white py-2 font-medium"
             >
               Sign Up
-            </a>
+            </Link>
           </div>
 
           <p className="text-gray-500 text-center mb-8">
@@ -138,9 +139,9 @@ const LoginPage = () => {
           {/* not having an account option */}
           <p className="text-center text-gray-500 pt-2">
             Don't have an account?{" "}
-            <a className="text-primary" href="/signup">
+            <Link className="text-primary" to="/signup">
               Sign Up
-            </a>
+            </Link>
           </p>
         </div>
       </div>

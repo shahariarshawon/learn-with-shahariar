@@ -5,7 +5,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -48,19 +48,19 @@ const SignUpPage = () => {
 
           {/* TOGGLE */}
           <div className="relative flex bg-[#75e0e1] rounded-full p-1 mb-8">
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="flex-1 text-center z-10 text-white  py-2 font-medium"
             >
               Login
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/signup"
               className="flex-1 text-center z-10 text-white py-2 bg-[#3ba3a4] rounded-4xl font-medium"
             >
               Sign Up
-            </a>
+            </Link>
           </div>
 
           <p className="text-gray-500 text-center mb-8">
@@ -156,9 +156,9 @@ const SignUpPage = () => {
           {/* already have an account */}
           <p className="text-center text-gray-500 pt-2">
             Already have an account?{" "}
-            <a className="text-primary" href="/login">
+            <Link className="text-primary" to="/login">
               Login
-            </a>
+            </Link>
           </p>
         </div>
       </div>

@@ -90,7 +90,7 @@ const OurCourses = () => {
                 </p>
 
                 <button className="px-4 py-2 rounded-lg bg-[#49bbbd] text-white text-sm hover:opacity-90 transition">
-                  Explore →
+                  Explore 
                 </button>
 
               </div>
