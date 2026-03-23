@@ -39,10 +39,6 @@ const router = createBrowserRouter([
         path: "/about",
         Component: AboutUs,
       },
-      {
-        path: "/reset",
-        Component: ForgotPassword,
-      },
 
       {
         path: "/*",
@@ -50,6 +46,11 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/reset",
+    Component: ForgotPassword,
+  },
+
   {
     path: "/",
     Component: AuthLayout,
