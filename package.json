@@ -13,6 +13,7 @@
     "@tailgrids/icons": "^2.0.0",
     "@tailwindcss/vite": "^4.2.1",
     "aos": "^2.3.4",
+    "axios": "^1.13.6",
     "class-variance-authority": "^0.7.1",
     "firebase": "^12.11.0",
     "react": "^19.1.1",
