@@ -11,6 +11,8 @@ import AuthLayout from "../layouts/AuthLayout";
 import AdminDashboard from "../pages/dashboard/AdminDashboard";
 import StudentDashboard from "../pages/dashboard/StudentDashboard";
 import TeacherDashboard from "../pages/dashboard/TeacherDashboard";
+import ForgotPassword from "../components/ForgotPassword";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -38,17 +40,10 @@ const router = createBrowserRouter([
         Component: AboutUs,
       },
       {
-        path: "/dashboard/admin",
-        Component: AdminDashboard,
+        path: "/reset",
+        Component: ForgotPassword,
       },
-      {
-        path: "/dashboard/student",
-        Component: StudentDashboard,
-      },
-      {
-        path: "/dashboard/teacher",
-        Component: TeacherDashboard,
-      },
+
       {
         path: "/*",
         element: <p>Tumi vuler dike acho</p>,
@@ -66,6 +61,24 @@ const router = createBrowserRouter([
       {
         path: "signup",
         Component: SignUpPage,
+      },
+    ],
+  },
+  {
+    path: "/",
+    Component: DashboardLayout,
+    children: [
+      {
+        path: "/dashboard/admin",
+        Component: AdminDashboard,
+      },
+      {
+        path: "/dashboard/student",
+        Component: StudentDashboard,
+      },
+      {
+        path: "/dashboard/teacher",
+        Component: TeacherDashboard,
       },
     ],
   },

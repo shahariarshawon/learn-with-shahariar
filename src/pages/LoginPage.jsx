@@ -125,9 +125,10 @@ const LoginPage = () => {
                 Remember Me
               </p>
 
+              <Link to={"/reset"}>
               <p className="text-[#49bbbd] cursor-pointer hover:underline">
                 Forgot Password?
-              </p>
+              </p></Link>
             </div>
 
             {/* BUTTON */}
