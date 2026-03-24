@@ -14,7 +14,9 @@ import TeacherDashboard from "../pages/dashboard/TeacherDashboard";
 import ForgotPassword from "../components/ForgotPassword";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
+import Homepage from "../components/adminDashboard/Homepage";
 import allUsers from "../components/adminDashboard/allUsers";
+import AllCourses from "../components/adminDashboard/AllCourses";
 
 const router = createBrowserRouter([
   // MAIN SITE
@@ -52,6 +54,7 @@ const router = createBrowserRouter([
   },
 
   // DASHBOARD (IMPORTANT FIX)
+ 
   {
     path: "/dashboard",
     element: (
@@ -65,8 +68,16 @@ const router = createBrowserRouter([
         element: <AdminDashboard></AdminDashboard>,
         children: [
           {
+            index: true,
+            Component: Homepage,
+          },
+          {
             path: "users",
             Component: allUsers,
+          },
+          {
+            path: "courses",
+            Component: AllCourses,
           },
         ],
       },

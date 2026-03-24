@@ -12,23 +12,23 @@ const menuItems = [
   {
     name: "Dashboard",
     icon: <MdSpaceDashboard />,
-    path: "/dashboard/admin",
+    path: "/dashboard/student",
   },
   {
     name: "My Course",
     icon: <FaBook />,
-    path: "/dashboard/admin/courses",
+    path: "/dashboard/student/courses",
   },
 
   {
     name: "My Progress",
     icon: <GrInProgress />,
-    path: "/dashboard/admin/classes",
+    path: "/dashboard/student/classes",
   },
   {
     name: "Leaderboard",
     icon: <FaTrophy />,
-    path: "/dashboard/admin/leaderboard",
+    path: "/dashboard/student/leaderboard",
   },
   {
     name: "Back to Home",

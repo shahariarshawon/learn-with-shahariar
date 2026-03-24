@@ -18,32 +18,32 @@ const menuItems = [
   {
     name: "Dashboard",
     icon: <MdSpaceDashboard />,
-    path: "/dashboard/admin",
+    path: "/dashboard/teacher",
   },
   {
     name: "My Course",
     icon: <FaBook />,
-    path: "/dashboard/admin/courses",
+    path: "/dashboard/teacher/courses",
   },
   {
     name: "Students",
     icon: <FaUsers />,
-    path: "/dashboard/admin/users",
+    path: "/dashboard/teacher/users",
   },
   {
     name: "All Lectures",
     icon: <FaBook />,
-    path: "/dashboard/admin/classes",
+    path: "/dashboard/teacher/classes",
   },
   {
     name: "Leaderboard",
     icon: <FaTrophy />,
-    path: "/dashboard/admin/leaderboard",
+    path: "/dashboard/teacher/leaderboard",
   },
   {
     name: "Make Announcements",
     icon: <TfiAnnouncement />,
-    path: "/dashboard/admin/announcements",
+    path: "/dashboard/teacher/announcements",
   },
   {
     name: "Back to Home",
