@@ -1,147 +1,119 @@
 import React from "react";
-import { FaBook, FaChartLine, FaAward, FaClipboardList } from "react-icons/fa";
+import { FaBook, FaTrophy } from "react-icons/fa";
+import { GrInProgress } from "react-icons/gr";
+import { IoHomeSharp, IoSettings } from "react-icons/io5";
+import { MdSpaceDashboard } from "react-icons/md";
+import { NavLink } from "react-router";
+
+{
+  /* ITEM */
+}
+const menuItems = [
+  {
+    name: "Dashboard",
+    icon: <MdSpaceDashboard />,
+    path: "/dashboard/admin",
+  },
+  {
+    name: "My Course",
+    icon: <FaBook />,
+    path: "/dashboard/admin/courses",
+  },
+
+  {
+    name: "My Progress",
+    icon: <GrInProgress />,
+    path: "/dashboard/admin/classes",
+  },
+  {
+    name: "Leaderboard",
+    icon: <FaTrophy />,
+    path: "/dashboard/admin/leaderboard",
+  },
+  {
+    name: "Back to Home",
+    icon: <IoHomeSharp />,
+    path: "/",
+  },
+];
 
 const StudentDashboard = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
-
-      {/* SIDEBAR */}
-      <aside className="w-64 bg-white shadow-lg hidden md:flex flex-col p-5">
-        <h2 className="text-2xl font-bold text-[#49bbbd] mb-8">Student Panel</h2>
-        <nav className="space-y-4 text-gray-700">
-         
-          <p className="hover:text-[#49bbbd] cursor-pointer">My Courses</p>
-          <p className="hover:text-[#49bbbd] cursor-pointer">Assignments</p>
-          <p className="hover:text-[#49bbbd] cursor-pointer">Progress</p>
-          <p className="hover:text-[#49bbbd] cursor-pointer">Leaderboard</p>
-          <p className="hover:text-[#49bbbd] cursor-pointer">Back to Home</p>
-        </nav>
-      </aside>
-
-      {/* MAIN */}
-      <div className="flex-1 flex flex-col">
-
-        {/* TOPBAR */}
-        <header className="bg-white shadow px-6 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-semibold">Welcome, Student</h1>
-          <div className="flex items-center gap-4">
-            <input
-              type="text"
-              placeholder="Search courses..."
-              className="border rounded-lg px-3 py-2 text-sm"
-            />
-            <div className="w-10 h-10 bg-[#49bbbd] rounded-full"></div>
-          </div>
-        </header>
-
-        {/* CONTENT */}
-        <main className="p-6 space-y-6">
-
-          {/* STATS */}
-          <div className="grid md:grid-cols-4 gap-6">
-
-            <div className="bg-white p-5 rounded-2xl shadow flex items-center gap-4">
-              <FaBook className="text-2xl text-[#49bbbd]" />
-              <div>
-                <p className="text-gray-500 text-sm">Courses Enrolled</p>
-                <h3 className="text-xl font-bold">5</h3>
-              </div>
+      <div className="drawer lg:drawer-open">
+        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content">
+          {/* Navbar */}
+          <nav className="navbar w-full bg-base-300">
+            <label
+              htmlFor="my-drawer-4"
+              aria-label="open sidebar"
+              className="btn btn-square btn-ghost"
+            >
+              {/* Sidebar toggle icon */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2"
+                fill="none"
+                stroke="currentColor"
+                className="my-1.5 inline-block size-4"
+              >
+                <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                <path d="M9 4v16"></path>
+                <path d="M14 10l2 2l-2 2"></path>
+              </svg>
+            </label>
+            <div className="px-4 w-full text-2xl font-semibold text-center">
+              Welcome Student
             </div>
+          </nav>
+          {/* Page content here */}
+          <div className="p-4">Page Content</div>
+        </div>
 
-            <div className="bg-white p-5 rounded-2xl shadow flex items-center gap-4">
-              <FaClipboardList className="text-2xl text-[#49bbbd]" />
-              <div>
-                <p className="text-gray-500 text-sm">Assignments Pending</p>
-                <h3 className="text-xl font-bold">2</h3>
-              </div>
-            </div>
+        <div className="drawer-side is-drawer-close:overflow-visible">
+          <label
+            htmlFor="my-drawer-4"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+            {/* Sidebar content here */}
+            <ul className="menu w-full grow">
+              {menuItems.map((item, i) => (
+                <li key={i}>
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `
+        flex items-center gap-3 px-3 py-3 mb-2 rounded-lg
+        transition-all duration-200
+        is-drawer-close:tooltip is-drawer-close:tooltip-right
+        ${
+          isActive
+            ? "bg-[#49bbbd] text-white"
+            : "text-gray-700 hover:bg-[#49bbbd]/10 hover:text-[#49bbbd]"
+        }
+        `
+                    }
+                    data-tip={item.name}
+                  >
+                    {/* ICON */}
+                    <span className="text-lg">{item.icon}</span>
 
-            <div className="bg-white p-5 rounded-2xl shadow flex items-center gap-4">
-              <FaChartLine className="text-2xl text-[#49bbbd]" />
-              <div>
-                <p className="text-gray-500 text-sm">Average Progress</p>
-                <h3 className="text-xl font-bold">68%</h3>
-              </div>
-            </div>
-
-            <div className="bg-white p-5 rounded-2xl shadow flex items-center gap-4">
-              <FaAward className="text-2xl text-[#49bbbd]" />
-              <div>
-                <p className="text-gray-500 text-sm">Certificates Earned</p>
-                <h3 className="text-xl font-bold">1</h3>
-              </div>
-            </div>
-
-          </div>
-
-          {/* MY COURSES */}
-          <div className="bg-white p-6 rounded-2xl shadow">
-            <h2 className="text-lg font-semibold mb-4">My Courses</h2>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead className="text-gray-500 border-b">
-                  <tr>
-                    <th className="py-3">Course</th>
-                    <th>Progress</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <tr className="border-b">
-                    <td className="py-3">MERN Stack Basics</td>
-                    <td>80%</td>
-                    <td className="text-green-500">In Progress</td>
-                    <td>
-                      <button className="px-3 py-1 bg-[#49bbbd] text-white rounded-lg text-sm hover:opacity-90">
-                        Continue
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr className="border-b">
-                    <td className="py-3">Next.js Advanced</td>
-                    <td>40%</td>
-                    <td className="text-yellow-500">In Progress</td>
-                    <td>
-                      <button className="px-3 py-1 bg-[#49bbbd] text-white rounded-lg text-sm hover:opacity-90">
-                        Continue
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td className="py-3">Backend API Design</td>
-                    <td>100%</td>
-                    <td className="text-green-500">Completed</td>
-                    <td>
-                      <button className="px-3 py-1 bg-[#49bbbd] text-white rounded-lg text-sm hover:opacity-90">
-                        View Certificate
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* UPCOMING ASSIGNMENTS */}
-          <div className="bg-white p-6 rounded-2xl shadow">
-            <h2 className="text-lg font-semibold mb-4">Upcoming Assignments</h2>
-            <ul className="space-y-3">
-              <li className="flex justify-between bg-gray-50 px-4 py-3 rounded-lg">
-                <span>MERN Stack Project 1</span>
-                <span className="text-sm text-gray-500">Due: 25 Mar</span>
-              </li>
-              <li className="flex justify-between bg-gray-50 px-4 py-3 rounded-lg">
-                <span>Next.js Blog App</span>
-                <span className="text-sm text-gray-500">Due: 28 Mar</span>
-              </li>
+                    {/* TEXT */}
+                    <span className="is-drawer-close:hidden text-sm font-medium">
+                      {item.name}
+                    </span>
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           </div>
-
-        </main>
+        </div>
       </div>
     </div>
   );
