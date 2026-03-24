@@ -146,9 +146,9 @@ const Header = () => {
                   <div className="absolute right-0 mt-3 w-60 bg-white rounded-2xl shadow-xl p-4 animate-fadeIn">
                     <div>
                       <p className="text-sm text-gray-600">
-                        {!user.email === "shahariarshawon.dev@gmail.com"
-                          ? "Student"
-                          : "Admin"}
+                        {user.email === "shahariarshawon.dev@gmail.com"
+                          ? "Admin"
+                          : "Student"}
                       </p>
                       <p className="text-xs text-gray-400 truncate">
                         {user?.email}
@@ -165,7 +165,11 @@ const Header = () => {
                       Profile
                     </Link>
                     <Link
-                      to="/dashboard/admin"
+                      to={
+                        user.email === "shahariarshawon.dev@gmail.com"
+                          ? "/dashboard/admin"
+                          : "/dashboard/student"
+                      }
                       onClick={() => setOpen(false)}
                       className="block px-3 py-2 rounded-lg hover:bg-gray-100 transition"
                     >

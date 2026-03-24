@@ -6,8 +6,10 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const SignUpPage = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {
     register,
@@ -16,19 +18,42 @@ const SignUpPage = () => {
   } = useForm();
   const { createUser } = useAuth();
   // login function
-  const onSubmit = (data) => {
-    console.log(data);
-    createUser(data.email, data.password)
-      .then((result) => {
-        console.log(result.user);
-        toast.success("SignUp Successfull");
-        navigate("/login");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+const axiosSecure = useAxiosSecure();
 
+const onSubmit = async (data) => {
+  try {
+    if (data.password !== data.confirmPassword) {
+      return toast.error("Passwords do not match");
+    }
+
+    setLoading(true);
+
+    // create user
+    const result = await createUser(data.email, data.password);
+    const user = result.user;
+
+    // prepare data
+    const userData = {
+      name: data.username,
+      email: data.email,
+      uid: user.uid,
+      role: "student",
+      createdAt: new Date(),
+    };
+
+    // send to DB
+    await axiosSecure.post("/users", userData);
+
+    toast.success("Signup Successful");
+    navigate("/");
+  } catch (err) {
+    console.error(err);
+    toast.error("Signup Failed");
+  } finally {
+    setLoading(false);
+  }
+};
+ 
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="flex justify-center items-center bg-base-200 min-h-screen px-6 ">
@@ -56,7 +81,7 @@ const SignUpPage = () => {
             </Link>
 
             <Link
-              href="/signup"
+              to="/signup"
               className="flex-1 text-center z-10 text-white py-2 bg-[#3ba3a4] rounded-4xl font-medium"
             >
               Sign Up
@@ -148,8 +173,11 @@ const SignUpPage = () => {
             </div>
 
             {/* BUTTON */}
-            <button className="w-full py-3 rounded-lg bg-[#49bbbd] text-white font-semibold hover:opacity-90 transition hover:cursor-pointer">
-              Sign Up
+            <button
+              disabled={loading}
+              className="w-full py-3 rounded-lg bg-[#49bbbd] text-white font-semibold hover:opacity-90 transition hover:cursor-pointer"
+            >
+              {loading ? "Creating..." : "Sign Up"}
             </button>
           </form>
 

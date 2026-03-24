@@ -9,12 +9,12 @@ const StudentDashboard = () => {
       <aside className="w-64 bg-white shadow-lg hidden md:flex flex-col p-5">
         <h2 className="text-2xl font-bold text-[#49bbbd] mb-8">Student Panel</h2>
         <nav className="space-y-4 text-gray-700">
-          <p className="hover:text-[#49bbbd] cursor-pointer">Dashboard</p>
+         
           <p className="hover:text-[#49bbbd] cursor-pointer">My Courses</p>
           <p className="hover:text-[#49bbbd] cursor-pointer">Assignments</p>
           <p className="hover:text-[#49bbbd] cursor-pointer">Progress</p>
-          <p className="hover:text-[#49bbbd] cursor-pointer">Certificates</p>
-          <p className="hover:text-[#49bbbd] cursor-pointer">Settings</p>
+          <p className="hover:text-[#49bbbd] cursor-pointer">Leaderboard</p>
+          <p className="hover:text-[#49bbbd] cursor-pointer">Back to Home</p>
         </nav>
       </aside>
 
