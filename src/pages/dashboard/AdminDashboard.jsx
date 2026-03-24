@@ -1,6 +1,61 @@
 import React from "react";
-import { FaUsers, FaBook, FaDollarSign, FaChartLine } from "react-icons/fa";
-import { Link } from "react-router";
+import {
+  FaUsers,
+  FaBook,
+  FaDollarSign,
+  FaChartLine,
+  FaTrophy,
+} from "react-icons/fa";
+import { IoHomeSharp, IoSettings } from "react-icons/io5";
+import { MdSpaceDashboard } from "react-icons/md";
+import { TfiAnnouncement } from "react-icons/tfi";
+import { Link, NavLink } from "react-router";
+
+{
+  /* ITEM */
+}
+const menuItems = [
+  {
+    name: "Dashboard",
+    icon: <MdSpaceDashboard />,
+    path: "/dashboard/admin",
+  },
+  {
+    name: "Courses",
+    icon: <FaBook />,
+    path: "/dashboard/admin/courses",
+  },
+  {
+    name: "Users",
+    icon: <FaUsers />,
+    path: "/dashboard/admin/users",
+  },
+  {
+    name: "All Class",
+    icon: <FaBook />,
+    path: "/dashboard/admin/classes",
+  },
+  {
+    name: "Leaderboard",
+    icon: <FaTrophy />,
+    path: "/dashboard/admin/leaderboard",
+  },
+  {
+    name: "Make Announcements",
+    icon: <TfiAnnouncement />,
+    path: "/dashboard/admin/announcements",
+  },
+  {
+    name: "Blogs",
+    icon: <FaBook />,
+    path: "/dashboard/admin/blogs",
+  },
+  {
+    name: "Back to Home",
+    icon: <IoHomeSharp />,
+    path: "/",
+  },
+];
 
 const AdminDashboard = () => {
   return (
@@ -46,36 +101,34 @@ const AdminDashboard = () => {
             className="drawer-overlay"
           ></label>
           <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
-           
             {/* Sidebar content here */}
             <ul className="menu w-full grow">
-            {/* ITEM */}
-              {[
-                "Homepage",
-                "Courses",
-                "Users",
-                "All Class",
-                "Leaderboard",
-                "Make Announcements",
-                "Blogs",
-                "Settings",
-              ].map((item, i) => (
+              {menuItems.map((item, i) => (
                 <li key={i}>
-                  <button
-                    className="
-                      flex items-center gap-3 px-3 py-2 rounded-lg
-                      text-gray-700 hover:bg-[#49bbbd]/10 hover:text-[#49bbbd]
-                      transition-all duration-200
-                      is-drawer-close:tooltip is-drawer-close:tooltip-right
-                    "
-                    data-tip={item}
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `
+        flex items-center gap-3 px-3 py-3 mb-2 rounded-lg
+        transition-all duration-200
+        is-drawer-close:tooltip is-drawer-close:tooltip-right
+        ${
+          isActive
+            ? "bg-[#49bbbd] text-white"
+            : "text-gray-700 hover:bg-[#49bbbd]/10 hover:text-[#49bbbd]"
+        }
+        `
+                    }
+                    data-tip={item.name}
                   >
-                    
+                    {/* ICON */}
+                    <span className="text-lg">{item.icon}</span>
 
+                    {/* TEXT */}
                     <span className="is-drawer-close:hidden text-sm font-medium">
-                      {item}
+                      {item.name}
                     </span>
-                  </button>
+                  </NavLink>
                 </li>
               ))}
             </ul>
